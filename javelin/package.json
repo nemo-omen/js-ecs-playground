@@ -1,0 +1,27 @@
+{
+  "name": "js-ecs-comparison",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.6.5",
+    "esbuild": "^0.14.54",
+    "esbuild-node-tsc": "^1.8.8",
+    "nodemon": "^2.0.19",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "@javelin/core": "1.0.0-alpha.12",
+    "@javelin/ecs": "1.0.0-alpha.13",
+    "@javelin/hrtime-loop": "1.0.0-alpha.4",
+    "@javelin/isomorphic-utils": "1.0.0-alpha.12",
+    "@javelin/net": "1.0.0-alpha.15",
+    "@javelin/pack": "1.0.0-alpha.12"
+  }
+}
