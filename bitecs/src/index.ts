@@ -24,6 +24,8 @@ import {
 
 } from 'bitecs';
 
+import Loop from 'accurate-game-loop';
+
 const world = createWorld();
 
 world.name = 'The Ferry';
@@ -76,12 +78,22 @@ const livingConcsiousQuery = defineQuery([Living, Conscious]);
 const livingConsciousEnts = livingConcsiousQuery(world);
 console.log(livingConsciousEnts);
 
-const loopInt = setInterval(() => {
+const toBattle = () => {
   healthReductionSystem(world);
   console.log(`Health of ${playerCharacter} is ${Health.hitpoints[playerCharacter]}`);
   console.log(`Health of ${actor} is ${Health.hitpoints[actor]}`);
+  checkDead();
+};
 
-  if (Health.hitpoints[playerCharacter] <= 0) {
-    clearInterval(loopInt);
+const loopTime = 1;
+const loop = new Loop(toBattle, loopTime);
+
+function checkDead() {
+  const isAnyoneDead = (Health.hitpoints[actor] <= 0 || Health.hitpoints[playerCharacter] <= 0);
+  if (isAnyoneDead) {
+    console.log('Someone died!');
+    loop.stop();
   }
-}, 1000);
+}
+
+loop.start();
