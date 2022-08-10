@@ -76,6 +76,9 @@ console.log(Health.hitpoints[playerCharacter]);
 
 const livingConcsiousQuery = defineQuery([Living, Conscious]);
 const livingConsciousEnts = livingConcsiousQuery(world);
+const serialize = defineSerializer(world);
+const deserialize = defineDeserializer(world);
+
 console.log(livingConsciousEnts);
 
 const toBattle = () => {
