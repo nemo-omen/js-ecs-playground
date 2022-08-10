@@ -53,27 +53,45 @@ const chars = createQuery(Character, Alive, Conscious);
 
 const character = world.create(characterComponent, hit, health, bag, inventory, alive, conscious, battleState);
 
+const initCharacterSystem = (world: World) => chars((character, [battleState, health, alive, conscious]) => {
+
+  battleState.inBattle = true;
+  health.hitPoints = 60;
+  alive.isAlive = true;
+  // conscious.awake = true;
+});
+
 const healthSystem = (world: World) => chars((character, [battleState, hit, health, alive, conscious]) => {
 
+  hit.damage = 5;
+
   if (battleState.inBattle === true) {
+    hit.isHit = true;
+    console.log('You are under attack!');
     if (hit.isHit) {
-      health.hitPoints -= hit.damage;
+      health.hitPoints = health.hitPoints - hit.damage;
+      console.log(`You have been hit for ${hit.damage} hitpoints!`);
+      console.log(`Your health is now ${health.hitPoints}!`);
     }
   }
 
   if (health.hitPoints < 10) {
     conscious.awake = false;
+    console.log('You have been knocked unconscious!');
   }
 
   if (health.hitPoints <= 0) {
     alive.isLiving = false;
+    if (battleState.inBattle) battleState.inBattle = false;
+    console.log('You are dead!');
   }
 });
 
+world.addSystem(initCharacterSystem);
 world.addSystem(healthSystem);
 
 function tick(dt: number) {
   world.tick(dt);
 }
 
-const loop = createHrtimeLoop(1000, clock => tick(clock.dt));
+createHrtimeLoop(world.step, 1000).start();
