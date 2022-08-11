@@ -52,7 +52,7 @@ const initSystem = (world) => {
     addComponent(world, DamageFactor, ent);
     Health.hitpoints[ent] = 60;
     Health.regenFactor[ent] = 6;
-    DamageFactor.value[ent] = 5;
+    DamageFactor.value[ent] = 10;
   }
 
   return world;
@@ -98,5 +98,7 @@ function checkDead() {
     loop.stop();
   }
 }
+
+console.log('world: ', world);
 
 loop.start();

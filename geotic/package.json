@@ -1,0 +1,23 @@
+{
+  "name": "geotic-comparison",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.6.5",
+    "esbuild": "^0.14.54",
+    "esbuild-node-tsc": "^1.8.8",
+    "nodemon": "^2.0.19",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "accurate-game-loop": "^2.0.0",
+    "geotic": "^3.5.5"
+  }
+}
